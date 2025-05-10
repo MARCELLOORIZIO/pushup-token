@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy & Redeem PushUpToken</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #003399;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #status {
+            margin-top: 10px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>PushUpToken DApp</h2>
+    <button onclick="connectWallet()">Connect MetaMask</button>
+
+    <h3>Buy PUSH</h3>
+    <input id="buyAmount" type="number" placeholder="Amount in BNB (e.g. 0.1)">
+    <button onclick="buyPush()">Buy</button>
+
+    <h3>Redeem PUSH</h3>
+    <input id="redeemAmount" type="number" placeholder="Amount in PUSH (e.g. 1)">
+    <button onclick="redeemPush()">Redeem</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+    const CONTRACT_ADDRESS = "0x3B12192db96Cd6E3A90d99Cfa796aD1788285893";
+    const ABI = [
+        {
+            "inputs": [],
+            "name": "buy",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "redeem",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ];
+
+    let web3;
+    let contract;
+    let accounts;
+
+    async function connectWallet() {
+        if (window.ethereum) {
+            web3 = new Web3(window.ethereum);
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            accounts = await web3.eth.getAccounts();
+            contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+            document.getElementById('status').innerText = 'Wallet connected';
+        } else {
+            alert("Please install MetaMask.");
+        }
+    }
+
+    async function buyPush() {
+        const value = web3.utils.toWei(document.getElementById('buyAmount').value, 'ether');
+        try {
+            await contract.methods.buy().send({ from: accounts[0], value });
+            document.getElementById('status').innerText = 'Purchase successful!';
+        } catch (err) {
+            console.error(err);
+            document.getElementById('status').innerText = 'Transaction failed.';
+        }
+    }
+
+    async function redeemPush() {
+        const amount = web3.utils.toWei(document.getElementById('redeemAmount').value, 'ether');
+        try {
+            await contract.methods.redeem(amount).send({ from: accounts[0] });
+            document.getElementById('status').innerText = 'Redeem successful!';
+        } catch (err) {
+            console.error(err);
+            document.getElementById('status').innerText = 'Transaction failed.';
+        }
+    }
+</script>
+</body>
+</html>
