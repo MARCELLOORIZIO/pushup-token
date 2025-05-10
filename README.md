@@ -1,23 +1,23 @@
 # PushUpToken
 
-**Il primo token che cresce con te.**
+**The first token that grows with you.**
 
-PushUpToken è una criptovaluta innovativa progettata per garantire un aumento costante di valore attraverso un sistema matematico trasparente, partecipativo e automatizzato.
+PushUpToken is an innovative cryptocurrency designed to ensure a steady increase in value through a transparent, participatory, and automated mathematical system.
 
 ## 📄 White Paper
 
-- [White Paper Italiano](PushUpToken_WhitePaper_ITA.pdf)
-- [White Paper Inglese](PushUpToken_WhitePaper_ENG.pdf)
+- [White Paper in Italian](PushUpToken_WhitePaper_ITA.pdf)
+- [White Paper in English](PushUpToken_WhitePaper_ENG.pdf)
 
-## 🔗 Contratto Smart (BSC)
+## 🔗 Smart Contract (BSC)
 
 `0x3B12192db96Cd6E3A90d99Cfa796aD1788285893`  
-[Vedi su BscScan](https://bscscan.com/address/0x3B12192db96Cd6E3A90d99Cfa796aD1788285893)
+[View on BscScan](https://bscscan.com/address/0x3B12192db96Cd6E3A90d99Cfa796aD1788285893)
 
-## 🌐 Sito ufficiale
+## 🌐 Official Website
 
-[Visita la pagina GitHub Pages](https://marcelloorizio.github.io/pushup-token)
+[Visit GitHub Pages site](https://marcelloorizio.github.io/pushup-token)
 
-## 📬 Contatti
+## 📬 Contact
 
 📧 Email: pushuptoken@gmail.com
